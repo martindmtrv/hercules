@@ -16,7 +16,7 @@ export class ExerciseState{
     isPriority: boolean;
     eid : number;
     id: string
-    constructor(reps?: number, sets?: number, isPriority?: boolean, id?: number){
+    constructor(sets?: number, reps?: number, isPriority?: boolean, id?: number){
         this.reps = reps || 10;
         this.sets = sets || 3;
         this.isPriority = !!isPriority;

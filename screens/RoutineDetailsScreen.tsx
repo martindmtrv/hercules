@@ -26,7 +26,7 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
                 <Text>{item.getExercise()}</Text>
                 <Text>Sets: {item.sets}</Text>
                 <Picker selectedValue={item.sets} style={{height: 50, width: 100}} onValueChange={(value: any) => {
-                  item.sets = value;
+                  item.sets = parseInt(value);
                   root.saveData();
                   setRefresh(!refresh);
                   }}>
@@ -37,6 +37,22 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
                     <Picker.Item label={"5"} value={5} />
                   </Picker>
                 <Text>Reps: {item.reps}</Text>
+                <Picker selectedValue={item.reps} style={{height: 50, width: 100}} onValueChange={(value: any) => {
+                  item.reps = parseInt(value);
+                  root.saveData();
+                  setRefresh(!refresh);
+                  }}>
+                    <Picker.Item label={"1"} value={1} />
+                    <Picker.Item label={"2"} value={2} />
+                    <Picker.Item label={"3"} value={3} />
+                    <Picker.Item label={"4"} value={4} />
+                    <Picker.Item label={"5"} value={5} />
+                    <Picker.Item label={"6"} value={6} />
+                    <Picker.Item label={"8"} value={8} />
+                    <Picker.Item label={"10"} value={10} />
+                    <Picker.Item label={"12"} value={12} />
+                    <Picker.Item label={"15"} value={15} />
+                  </Picker>
                 </TouchableOpacity>)}
             </ScrollView>
             </SafeAreaView>
