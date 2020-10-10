@@ -5,14 +5,14 @@ import { ExerciseState } from './ExerciseState';
 
 export class AppState{
   routines: RoutineState[] = [];
-  currentDay: string = "";
+  currentDay: number = 0;
 
   initialized: boolean;
 
   constructor() {
     this.initialized = false;
     this.routines = [];
-    this.currentDay = "";
+    this.currentDay = 0;
   }
 
   loadData(): Promise<boolean> {
@@ -23,7 +23,7 @@ export class AppState{
         routine.exercises = routine.exercises.map(exercise => new ExerciseState().copyFrom(exercise));
         return routine;
       }) || [];
-      this.currentDay = obj.currentDay || "";
+      this.currentDay = obj.currentDay || 0;
       return this.initialized = true;
     }).catch(() => {
       console.log('there was a problem');
@@ -38,6 +38,6 @@ export class AppState{
 
 export interface DBFormat {
   routines: RoutineState[];
-  currentDay: string;
+  currentDay: number;
 
 }

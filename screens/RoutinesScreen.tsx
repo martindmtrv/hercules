@@ -16,6 +16,7 @@ export default function RoutinesScreen({ navigation }: {navigation: any}) {
         <Text style={styles.title}>Your Routines</Text>
         {adding ? <TextInput style={styles.inputHandle} onChangeText={(text: string) => setValue(text)} value={value} onSubmitEditing={() => { 
           value && root.routines.push(new RoutineState(value)); 
+          root.saveData();
           setAdding(false); 
           setValue("New Routine");
         }}  /> :
@@ -23,7 +24,7 @@ export default function RoutinesScreen({ navigation }: {navigation: any}) {
         <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
         <SafeAreaView style={styles.container}>
           <ScrollView style={styles.scrollView}>
-            {root.routines.map(routine => <TouchableOpacity key={routine.id} style={styles.box} onPress={()=> navigation.navigate(`Details`, {id: routine.id})}>
+            {root.routines.map(routine => <TouchableOpacity key={routine.id} style={styles.box} onPress={()=> navigation.navigate("Details", {id: routine.id})}>
               <Text style={styles.routineName}>{routine.routineDay}</Text>
               </TouchableOpacity>)}
           </ScrollView>

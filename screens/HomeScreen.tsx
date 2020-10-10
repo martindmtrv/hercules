@@ -3,22 +3,25 @@ import { StyleSheet, TouchableOpacity} from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import { RootData } from '../data/RootDataContext';
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}: {navigation: any}) {
   return (
-    <View style={styles.container}>
+    <RootData.Consumer>
+    {(root) => (<View style={styles.container}>
         <View style={styles.icon_container}>
             <FontAwesome5 name="dumbbell" size={80} color="#900" />
         </View>
         <View style={styles.centerbox}>
-            <Text style={styles.title}>Today is {} day</Text>
+            <Text style={styles.title}>Today is {root.routines[root.currentDay].routineDay} day</Text>
             <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-            <TouchableOpacity onPress={() => console.log("Replace with navigation to workout page")}>
+            <TouchableOpacity style={{backgroundColor: "blue", borderRadius: 6, padding: 16, margin: 12}} onPress={() => navigation.navigate("Routines", {screen:"Details", params:{id: root.routines[root.currentDay].id}, initial: false})}>
                 <Text>Check out Today's Workout</Text>
             </TouchableOpacity>
             <Text>Check out the Spotify playlist of the day!</Text>
         </View>
-    </View>
+    </View>)}
+    </RootData.Consumer>
   );
 }
 

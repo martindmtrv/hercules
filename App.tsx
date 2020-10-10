@@ -12,6 +12,7 @@ import { RoutineState } from './data/schemas/RoutineState';
 import { ExerciseState } from './data/schemas/ExerciseState';
 
 import {RootData} from "./data/RootDataContext";
+import { ActivityIndicator } from 'react-native';
 
 //test
 //import {ExerciseState} from './data/schemas/ExerciseState'
@@ -28,7 +29,6 @@ export default function App() {
       console.log(res);
       console.log(root);
       res && setInit(true);
-      
     });
   }, []);
 
@@ -49,6 +49,8 @@ export default function App() {
     root.routines.push(new RoutineState("Legs"));
     root.routines[2].addExercise(new ExerciseState(5, 10, false, 55));
 
+    root.currentDay || (root.currentDay = 0);
+
     root.saveData();
   }
 
@@ -57,7 +59,7 @@ export default function App() {
  // console.log(test);
 
   if (!isLoadingComplete && !init) {
-    return null;
+    return <ActivityIndicator />;
   } else {
     return (
       <RootData.Provider value={root}>
