@@ -15,7 +15,8 @@ export type HomeParamList = {
 };
 
 export type RoutineParamList = {
-  RoutineScreen: undefined;
+  Routines: undefined;
+  Details: undefined;
 };
 
 export type TabThreeParamList = {
