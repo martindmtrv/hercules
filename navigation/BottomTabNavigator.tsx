@@ -8,8 +8,8 @@ import useColorScheme from '../hooks/useColorScheme';
 import TabFourScreen from '../screens/TabFourScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabThreeScreen from '../screens/TabThreeScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabFourParamList, TabOneParamList, TabThreeParamList, TabTwoParamList } from '../types';
+import RoutineScreen from '../screens/RoutineScreen';
+import { BottomTabParamList, RoutineParamList, TabFourParamList, TabOneParamList, TabThreeParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -28,10 +28,10 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
+        name="Routines"
         component={TabTwoNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-paper" color={color} />,
         }}
       />
       <BottomTab.Screen
@@ -74,17 +74,17 @@ function TabOneNavigator() {
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const RoutineStack = createStackNavigator<RoutineParamList>();
 
 function TabTwoNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+    <RoutineStack.Navigator>
+      <RoutineStack.Screen
+        name="RoutineScreen"
+        component={RoutineScreen}
+        options={{ headerTitle: 'Routines' }}
       />
-    </TabTwoStack.Navigator>
+    </RoutineStack.Navigator>
   );
 }
 
@@ -115,6 +115,3 @@ function TabFourNavigator() {
     </TabFourStack.Navigator>
   );
 }
-
-
-

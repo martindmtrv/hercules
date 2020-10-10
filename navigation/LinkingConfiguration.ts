@@ -11,9 +11,9 @@ export default {
               TabOneScreen: 'one',
             },
           },
-          TabTwo: {
+          Routines: {
             screens: {
-              TabTwoScreen: 'two',
+              RoutineScreen: 'routines',
             },
           },
           TabThree: {
