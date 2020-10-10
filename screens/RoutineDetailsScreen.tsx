@@ -27,8 +27,28 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
 
           <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
             <SafeAreaView style={styles.container}>
-            <ScrollView style={styles.scrollView}>
-              {!adding ? routine.exercises.map((item: ExerciseState) => 
+              {adding && <FlatList
+                  style={styles.scrollView}
+                  data={EXERCISES}
+                  renderItem={({item, index, separators}) => 
+                  <TouchableOpacity
+                    //@ts-ignore
+                    key={item.key}
+                    onPress={() => {
+                      routine.addExercise(new ExerciseState(3, 10, false, index));
+                      root.saveData();
+                      setRefresh(!refresh);
+                      setAdding(false);
+                    }}>
+                    <View style={styles.box}>
+                      <Text>{item.exercise}</Text>
+                      <Text>{item.muscle}</Text>
+                    </View>
+                  </TouchableOpacity>}
+                  keyExtractor={item => item.exercise}
+                />}
+            {!adding && <ScrollView style={styles.scrollView}>
+              {routine.exercises.map((item: ExerciseState) => 
               <TouchableOpacity key={item.id} style={styles.box} onPress={()=> console.log(item)}>
                 <Text>{item.getExercise()}</Text>
                 <Text>Sets: {item.sets}</Text>
@@ -60,31 +80,8 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
                     <Picker.Item label={"12"} value={12} />
                     <Picker.Item label={"15"} value={15} />
                   </Picker>
-                </TouchableOpacity>): 
-                <FlatList
-                  style={{backgroundColor: "black"}}
-                  data={EXERCISES}
-                  renderItem={({item, index, separators}) => 
-                  <TouchableOpacity
-                    //@ts-ignore
-                    key={item.key}
-                    onPress={() => {
-                      routine.addExercise(new ExerciseState(3, 10, false, index));
-                      root.saveData();
-                      setRefresh(!refresh);
-                      setAdding(false);
-                    }}
-                    // onShowUnderlay={separators.highlight}
-                    // onHideUnderlay={separators.unhighlight}
-                    >
-                    <View style={styles.box}>
-                      <Text>{item.exercise}</Text>
-                      <Text>{item.muscle}</Text>
-                    </View>
-                  </TouchableOpacity>}
-                  keyExtractor={item => item.exercise}
-                />}
-            </ScrollView>
+                </TouchableOpacity>)}
+                </ScrollView> }
             </SafeAreaView>
         </View>
         );
