@@ -11,10 +11,10 @@ import { AppState } from './data/schemas/AppState';
 import { RoutineState } from './data/schemas/RoutineState';
 import { ExerciseState } from './data/schemas/ExerciseState';
 
+import {RootData} from "./data/RootDataContext";
+
 //test
 //import {ExerciseState} from './data/schemas/ExerciseState'
-
-export const RootData = React.createContext<AppState>(new AppState());
 
 export default function App() {
   const isLoadingComplete = useCachedResources();

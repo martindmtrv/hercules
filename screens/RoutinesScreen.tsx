@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Dimensions } from 'react-native';
 import { Text, View } from '../components/Themed';
-import { RootData } from '../App';
-
+import { RootData } from '../data/RootDataContext';
 
 export default function RoutinesScreen({ navigation }: {navigation: any}) {
   return (
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
   },
   routineName: {
     fontSize: 30,
-    width: 'fit-content',
+    flexGrow: 0,
   },
   title: {
     paddingTop: 20,
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   scrollView: {
-    width: "80vw",
+    width: Dimensions.get('window').width * 0.8,
     marginVertical: 20,
   },
   text: {
