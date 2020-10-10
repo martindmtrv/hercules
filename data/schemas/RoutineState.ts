@@ -5,13 +5,13 @@ export class RoutineState{
     numExercises : number;
     routineDay : string;
     readonly id: string;
-    exercise : ExerciseState[];
+    exercises : ExerciseState[];
 
     constructor(routineDay : string){
         this.numExercises = 0;
         this.routineDay = routineDay;
         this.id = cuid();
-        this.exercise = [];
+        this.exercises = [];
     }
     
     /**
@@ -22,7 +22,7 @@ export class RoutineState{
     addExercise(exState : ExerciseState) : void {
         //adds total num of exercises
         this.numExercises++;
-        this.exercise.push(exState);
+        this.exercises.push(exState);
     }
     /**
     * Removes an exercise from the array pertaining to the routine.
@@ -30,11 +30,11 @@ export class RoutineState{
     */
     removeExercise(exState : ExerciseState) : void {
         var i;
-        for(i=0; i<this.exercise.length;i++){
-            if(this.exercise[i].id == exState.id){
+        for(i=0; i<this.exercises.length;i++){
+            if(this.exercises[i].id == exState.id){
                 //subtracts total number of exercises in Routine
                 this.numExercises--;
-                this.exercise.slice(i)
+                this.exercises.slice(i)
             }else{
                 console.error("This exercise is not in your Routine.");  
             }

@@ -3,6 +3,8 @@ import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import { RootData } from '../App';
 import { Text, View } from '../components/Themed';
+import { ExerciseState } from '../data/schemas/ExerciseState';
+import { RoutineState } from '../data/schemas/RoutineState';
 
 
 export default function RoutineDetailsScreen({ route, navigation  }: {route:any, navigation: any}) {
@@ -10,23 +12,27 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
   const days = ["Chest", "Back", "Legs", "Arms", "Shoulders"];
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}> {route.params.name} Day</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <RootData.Consumer>
-      {(root) => (
-        <SafeAreaView style={styles.container}>
-        <ScrollView style={styles.scrollView}>
-          {[0, 1,2,3,4,5,6,7,8,9,10, 11, 12, 13, 14].map(item => <TouchableOpacity style={styles.box} onPress={()=> console.log(item)}>
-      <Text key={item}>{root.routines.find((routine) => routine.id === route.params.id)}</Text>
-            <Text>Sets: </Text>
-            <Text>Reps: </Text>
-            </TouchableOpacity>)}
-        </ScrollView>
-        </SafeAreaView>
-      )}
-      </RootData.Consumer>
-    </View>
+    <RootData.Consumer>
+      {(root) => {
+        // @ts-ignore
+        const routine: RoutineState = root.routines.find((routine) => routine.id === route.params.id);
+        return (
+        <View style={styles.container}>
+          <Text style={styles.title}> {routine.routineDay} Day</Text>
+          <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+            <SafeAreaView style={styles.container}>
+            <ScrollView style={styles.scrollView}>
+              {routine.exercises.map((item: ExerciseState) => <TouchableOpacity key={item.id} style={styles.box} onPress={()=> console.log(item)}>
+                <Text>{item.getExercise()}</Text>
+                <Text>Sets: {item.sets}</Text>
+                <Text>Reps: {item.reps}</Text>
+                </TouchableOpacity>)}
+            </ScrollView>
+            </SafeAreaView>
+        </View>
+        );
+      }}
+    </RootData.Consumer>
   );
 }
 

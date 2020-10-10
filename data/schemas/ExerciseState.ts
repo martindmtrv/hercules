@@ -4,11 +4,11 @@ export class ExerciseState{
     sets : number;
     isPriority: boolean;
     id : number;
-    constructor(reps : number, sets : number, isPriority : boolean, id : number){
-        this.reps = reps;
-        this.sets = sets;
-        this.isPriority = isPriority;
-        this.id = id;
+    constructor(reps?: number, sets?: number, isPriority?: boolean, id?: number){
+        this.reps = reps || 10;
+        this.sets = sets || 3;
+        this.isPriority = !!isPriority;
+        this.id = id || 0;
     }
     getWeight(): number{
         return this.reps * this.sets;
@@ -21,5 +21,10 @@ export class ExerciseState{
     }
     getMuscle() : String{
         return this.getMetaData().muscle;
+    }
+
+    copyFrom(json: any): this {
+        // UNSAFE only from json reading
+        return Object.assign(this, json);
     }
 }

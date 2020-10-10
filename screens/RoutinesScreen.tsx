@@ -2,15 +2,10 @@ import * as React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import { Text, View } from '../components/Themed';
-
-import {StackNavigationProp} from "@react-navigation/stack";
 import { RootData } from '../App';
 
 
 export default function RoutinesScreen({ navigation }: {navigation: any}) {
-
-  const days = ["Chest", "Back", "Legs", "Arms", "Shoulders"];
-
   return (
     <RootData.Consumer>
       {(root) => (
@@ -26,7 +21,6 @@ export default function RoutinesScreen({ navigation }: {navigation: any}) {
         </SafeAreaView>
       </View>
       )}
-      
     </RootData.Consumer>
   );
 }
