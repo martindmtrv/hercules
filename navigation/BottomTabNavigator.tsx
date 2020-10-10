@@ -5,11 +5,11 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabFourScreen from '../screens/TabFourScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 import HomeScreen from '../screens/HomeScreen';
 import TabThreeScreen from '../screens/TabThreeScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabFourParamList, HomeParamList, TabThreeParamList, TabTwoParamList } from '../types';
+import { BottomTabParamList, SettingsParamList, HomeParamList, TabThreeParamList, TabTwoParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -42,8 +42,8 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="TabFour"
-        component={TabFourNavigator}
+        name="Settings"
+        component={SettingsNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
@@ -102,17 +102,17 @@ function TabThreeNavigator() {
   );
 }
 
-const TabFourStack = createStackNavigator<TabFourParamList>();
+const SettingsStack = createStackNavigator<SettingsParamList>();
 
-function TabFourNavigator() {
+function SettingsNavigator() {
   return (
-    <TabFourStack.Navigator>
-      <TabFourStack.Screen
-        name="TabFourScreen"
-        component={TabFourScreen}
-        options={{ headerTitle: 'Tab Four Title' }}
+    <SettingsStack.Navigator>
+      <SettingsStack.Screen
+        name="SettingsScreen"
+        component={SettingsScreen}
+        options={{ headerTitle: 'Settings Title' }}
       />
-    </TabFourStack.Navigator>
+    </SettingsStack.Navigator>
   );
 }
 

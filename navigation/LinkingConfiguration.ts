@@ -21,9 +21,9 @@ export default {
               TabThreeScreen: 'three',
             },
           },
-          TabFour: {
+          Settings: {
             screens: {
-              TabFourScreen: 'four',
+              SettingsScreen: 'four',
             },
           },
         },
