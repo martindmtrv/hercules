@@ -45,7 +45,7 @@ export default function BottomTabNavigator() {
         name="Settings"
         component={SettingsNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-settings" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -110,7 +110,7 @@ function SettingsNavigator() {
       <SettingsStack.Screen
         name="SettingsScreen"
         component={SettingsScreen}
-        options={{ headerTitle: 'Settings Title' }}
+        options={{ headerTitle: 'Settings' }}
       />
     </SettingsStack.Navigator>
   );
