@@ -6,6 +6,8 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 
+import {ThemeProvider} from "react-native-elements";
+
 //test
 //import {ExerciseState} from './data/schemas/ExerciseState'
 
@@ -22,8 +24,11 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
+        <ThemeProvider>
+          <Navigation colorScheme={colorScheme} />
+          <StatusBar />
+        </ThemeProvider>
+        
       </SafeAreaProvider>
     );
   }
