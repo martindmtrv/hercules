@@ -6,9 +6,9 @@ export default {
     screens: {
       Root: {
         screens: {
-          TabOne: {
+          Home: {
             screens: {
-              TabOneScreen: 'one',
+              HomeScreen: 'one',
             },
           },
           Routines: {
@@ -21,9 +21,9 @@ export default {
               TabThreeScreen: 'three',
             },
           },
-          TabFour: {
+          Settings: {
             screens: {
-              TabFourScreen: 'four',
+              SettingsScreen: 'four',
             },
           },
         },
