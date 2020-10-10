@@ -1,4 +1,9 @@
-[
+export interface ExerciseMetaData {
+  exercise: string;
+  muscle: string;
+}
+
+export const EXERCISES: ExerciseMetaData[] = [
     {
       "exercise": "ab crunch machine",
       "muscle": "abdominals"
@@ -3595,4 +3600,4 @@
       "exercise": "zottman preacher curl",
       "muscle": "biceps"
     }
-  ]
+  ];
