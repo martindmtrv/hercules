@@ -8,7 +8,7 @@ export default {
         screens: {
           Home: {
             screens: {
-              HomeScreen: 'one',
+              HomeScreen: 'home',
             },
           },
           Routines: {
@@ -23,7 +23,7 @@ export default {
           },
           Settings: {
             screens: {
-              SettingsScreen: 'four',
+              SettingsScreen: 'settings',
             },
           },
         },
