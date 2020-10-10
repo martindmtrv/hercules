@@ -4,6 +4,7 @@ import { TouchableOpacity } from 'react-native';
 import { Text, View } from '../components/Themed';
 
 import {StackNavigationProp} from "@react-navigation/stack";
+import { RootData } from '../App';
 
 
 export default function RoutinesScreen({ navigation }: {navigation: any}) {
@@ -11,17 +12,22 @@ export default function RoutinesScreen({ navigation }: {navigation: any}) {
   const days = ["Chest", "Back", "Legs", "Arms", "Shoulders"];
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Your Routines</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <SafeAreaView style={styles.container}>
-        <ScrollView style={styles.scrollView}>
-          {days.map(item => <TouchableOpacity key={item} style={styles.box} onPress={()=> navigation.navigate(`Details`, {name: item})}>
-            <Text style={styles.routineName}>{item}</Text>
-            </TouchableOpacity>)}
-        </ScrollView>
-    </SafeAreaView>
-    </View>
+    <RootData.Consumer>
+      {(root) => (
+        <View style={styles.container}>
+        <Text style={styles.title}>Your Routines</Text>
+        <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+        <SafeAreaView style={styles.container}>
+          <ScrollView style={styles.scrollView}>
+            {root.routines.map(routine => <TouchableOpacity key={routine.id} style={styles.box} onPress={()=> navigation.navigate(`Details`, {id: routine.id})}>
+              <Text style={styles.routineName}>{routine.routineDay}</Text>
+              </TouchableOpacity>)}
+          </ScrollView>
+        </SafeAreaView>
+      </View>
+      )}
+      
+    </RootData.Consumer>
   );
 }
 

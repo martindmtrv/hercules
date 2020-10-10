@@ -14,13 +14,14 @@ import { ExerciseState } from './data/schemas/ExerciseState';
 //test
 //import {ExerciseState} from './data/schemas/ExerciseState'
 
+export const RootData = React.createContext<AppState>(new AppState());
+
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
 
   const [root, setRoot] = useState(new AppState());
   const [init, setInit] = useState(false);
-
 
   useEffect(() => {
     root.loadData().then(res => {
@@ -60,13 +61,14 @@ export default function App() {
     return null;
   } else {
     return (
-      <SafeAreaProvider>
-        <ThemeProvider>
-          <Navigation colorScheme={colorScheme} />
-          <StatusBar />
-        </ThemeProvider>
-        
-      </SafeAreaProvider>
+      <RootData.Provider value={root}>
+        <SafeAreaProvider>
+          <ThemeProvider>
+            <Navigation colorScheme={colorScheme} />
+            <StatusBar />
+          </ThemeProvider>
+        </SafeAreaProvider>
+      </RootData.Provider>
     );
   }
 }
