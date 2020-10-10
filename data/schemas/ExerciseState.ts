@@ -1,5 +1,15 @@
 import cuid from "cuid";
 import { ExerciseMetaData, EXERCISES } from "../ExercisesMetaData";
+
+function toTitleCase(str) {
+    return str.replace(
+      /\w\S*/g,
+      function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      }
+    );
+  }
+
 export class ExerciseState{
     reps : number;
     sets : number;
@@ -13,6 +23,7 @@ export class ExerciseState{
         this.id = cuid();
         this.eid = id || 0;
     }
+
     getWeight(): number{
         return this.reps * this.sets;
     }
@@ -20,7 +31,7 @@ export class ExerciseState{
         return EXERCISES[this.eid];
     }
     getExercise() : String{
-        return this.getMetaData().exercise;
+        return toTitleCase(this.getMetaData().exercise);
     }
     getMuscle() : String{
         return this.getMetaData().muscle;
