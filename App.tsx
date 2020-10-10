@@ -50,7 +50,6 @@ export default function App() {
     root.routines[2].addExercise(new ExerciseState(5, 10, false, 55));
 
     root.saveData();
-
   }
 
   //test

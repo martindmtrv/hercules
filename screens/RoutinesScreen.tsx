@@ -1,15 +1,25 @@
 import * as React from 'react';
-import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, TextInput } from 'react-native';
 import { TouchableOpacity, Dimensions } from 'react-native';
 import { Text, View } from '../components/Themed';
 import { RootData } from '../data/RootDataContext';
+import { RoutineState } from '../data/schemas/RoutineState';
 
 export default function RoutinesScreen({ navigation }: {navigation: any}) {
+  const [adding, setAdding] = React.useState(false);
+  const [value, setValue] = React.useState("New Routine");
+
   return (
     <RootData.Consumer>
       {(root) => (
         <View style={styles.container}>
         <Text style={styles.title}>Your Routines</Text>
+        {adding ? <TextInput style={styles.inputHandle} onChangeText={(text: string) => setValue(text)} value={value} onSubmitEditing={() => { 
+          value && root.routines.push(new RoutineState(value)); 
+          setAdding(false); 
+          setValue("New Routine");
+        }}  /> :
+        <TouchableOpacity style={{backgroundColor: "blue", padding: 8, marginTop: 5, borderRadius: 6}} onPress={() => setAdding(true)}><Text>+ Add New Routine</Text></TouchableOpacity>}
         <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
         <SafeAreaView style={styles.container}>
           <ScrollView style={styles.scrollView}>
@@ -41,6 +51,13 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     marginBottom: 25,
     borderColor: "red",
+  },
+  inputHandle: {
+    height: 50,
+    marginTop: 20,
+    paddingLeft: 5,
+    backgroundColor: "white",
+    width: Dimensions.get('window').width * 0.8
   },
   routineName: {
     fontSize: 30,
