@@ -24,9 +24,11 @@ export default function RoutinesScreen({ navigation }: {navigation: any}) {
         <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
         <SafeAreaView style={styles.container}>
           <ScrollView style={styles.scrollView}>
-            {root.routines.map(routine => <TouchableOpacity key={routine.id} style={styles.box} onPress={()=> navigation.navigate("Details", {id: routine.id})}>
-              <Text style={styles.routineName}>{routine.routineDay}</Text>
-              </TouchableOpacity>)}
+            {root.routines.map(routine => 
+              <TouchableOpacity key={routine.id} style={styles.box} onPress={()=> navigation.navigate("Details", {id: routine.id})}>
+                <Text style={styles.routineName}>{routine.routineDay}</Text>
+              </TouchableOpacity>
+              )}
           </ScrollView>
         </SafeAreaView>
       </View>

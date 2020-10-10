@@ -5,11 +5,11 @@ import { RootData } from '../data/RootDataContext';
 import { Text, View } from '../components/Themed';
 import { ExerciseState } from '../data/schemas/ExerciseState';
 import { RoutineState } from '../data/schemas/RoutineState';
+import { Picker } from '@react-native-community/picker';
 
 
 export default function RoutineDetailsScreen({ route, navigation  }: {route:any, navigation: any}) {
-
-  const days = ["Chest", "Back", "Legs", "Arms", "Shoulders"];
+  const [refresh, setRefresh] = React.useState(false);
 
   return (
     <RootData.Consumer>
@@ -25,6 +25,17 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
               {routine.exercises.map((item: ExerciseState) => <TouchableOpacity key={item.id} style={styles.box} onPress={()=> console.log(item)}>
                 <Text>{item.getExercise()}</Text>
                 <Text>Sets: {item.sets}</Text>
+                <Picker selectedValue={item.sets} style={{height: 50, width: 100}} onValueChange={(value: any) => {
+                  item.sets = value;
+                  root.saveData();
+                  setRefresh(!refresh);
+                  }}>
+                    <Picker.Item label={"1"} value={1} />
+                    <Picker.Item label={"2"} value={2} />
+                    <Picker.Item label={"3"} value={3} />
+                    <Picker.Item label={"4"} value={4} />
+                    <Picker.Item label={"5"} value={5} />
+                  </Picker>
                 <Text>Reps: {item.reps}</Text>
                 </TouchableOpacity>)}
             </ScrollView>
