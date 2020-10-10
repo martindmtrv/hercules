@@ -8,8 +8,11 @@ import useColorScheme from '../hooks/useColorScheme';
 import SettingsScreen from '../screens/SettingsScreen';
 import HomeScreen from '../screens/HomeScreen';
 import TabThreeScreen from '../screens/TabThreeScreen';
-import RoutineScreen from '../screens/RoutineScreen';
+import RoutineScreen from '../screens/RoutinesScreen';
 import { BottomTabParamList, SettingsParamList, HomeParamList, TabThreeParamList, RoutineParamList } from '../types';
+
+import RoutinesScreen from '../screens/RoutinesScreen';
+import RoutineDetailsScreen from '../screens/RoutineDetailsScreen';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -29,7 +32,7 @@ export default function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Routines"
-        component={TabTwoNavigator}
+        component={RoutineNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-paper" color={color} />,
         }}
@@ -76,13 +79,18 @@ function HomeNavigator() {
 
 const RoutineStack = createStackNavigator<RoutineParamList>();
 
-function TabTwoNavigator() {
+function RoutineNavigator() {
   return (
     <RoutineStack.Navigator>
       <RoutineStack.Screen
-        name="RoutineScreen"
-        component={RoutineScreen}
+        name="Routines"
+        component={RoutinesScreen}
         options={{ headerTitle: 'Routines' }}
+      />
+      <RoutineStack.Screen 
+        name="Details"
+        component={RoutineDetailsScreen}
+        options={{headerTitle: 'Routine View'}}
       />
     </RoutineStack.Navigator>
   );

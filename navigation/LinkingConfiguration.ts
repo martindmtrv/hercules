@@ -13,7 +13,8 @@ export default {
           },
           Routines: {
             screens: {
-              RoutineScreen: 'routines',
+              RoutinesScreen: 'routines',
+              RoutineDetailsScreen: 'routines/details'
             },
           },
           TabThree: {

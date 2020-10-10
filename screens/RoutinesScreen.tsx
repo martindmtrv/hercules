@@ -3,17 +3,21 @@ import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import { Text, View } from '../components/Themed';
 
-import {EXERCISES} from '../data/ExercisesMetaData';
+import {StackNavigationProp} from "@react-navigation/stack";
 
-export default function RoutineScreen() {
+
+export default function RoutinesScreen({ navigation }: {navigation: any}) {
+
+  const days = ["Chest", "Back", "Legs", "Arms", "Shoulders"];
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Your Routines</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
-          {[0, 1,2,3,4,5,6,7,8,9,10, 11, 12, 13, 14].map(item => <TouchableOpacity style={styles.box} onPress={()=> console.log(item)}>
-            <Text key={item}>{EXERCISES[item].exercise}</Text>
+          {days.map(item => <TouchableOpacity key={item} style={styles.box} onPress={()=> navigation.navigate(`Details`, {name: item})}>
+            <Text style={styles.routineName}>{item}</Text>
             </TouchableOpacity>)}
         </ScrollView>
     </SafeAreaView>
@@ -28,17 +32,19 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   box: {
-    minWidth: "80%",
     display: 'flex',
-    justifyContent: "flex-end",
+    flexDirection: "column",
+    alignItems: "center",
+    height: 200,
+    justifyContent: "center",
     borderRadius: 6,
     borderStyle: "solid",
     borderWidth: 2,
-    marginBottom: 200,
+    marginBottom: 25,
     borderColor: "red",
   },
   routineName: {
-    alignItems: "center",
+    fontSize: 30,
     width: 'fit-content',
   },
   title: {
@@ -52,7 +58,7 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   scrollView: {
-    minWidth: 800,
+    width: "80vw",
     marginVertical: 20,
   },
   text: {
