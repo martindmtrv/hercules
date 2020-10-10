@@ -1,12 +1,16 @@
+import cuid from 'cuid';
 import {ExerciseState} from './ExerciseState'
 
 export class RoutineState{
     numExercises : number;
-    routineDay : String 
-    exercise : ExerciseState[]
-    constructor(routineDay : String){
+    routineDay : string;
+    readonly id: string;
+    exercise : ExerciseState[];
+
+    constructor(routineDay : string){
         this.numExercises = 0;
         this.routineDay = routineDay;
+        this.id = cuid();
         this.exercise = [];
     }
     
