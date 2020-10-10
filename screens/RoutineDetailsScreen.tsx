@@ -52,7 +52,7 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
               <TouchableOpacity key={item.id} style={styles.box} onPress={()=> console.log(item)}>
                 <Text>{item.getExercise()}</Text>
                 <Text>Sets: {item.sets}</Text>
-                <Picker selectedValue={item.sets} style={{height: 50, width: 100}} onValueChange={(value: any) => {
+                <Picker selectedValue={item.sets} style={styles.picker} onValueChange={(value: any) => {
                   item.sets = parseInt(value);
                   root.saveData();
                   setRefresh(!refresh);
@@ -64,7 +64,7 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
                     <Picker.Item label={"5"} value={5} />
                   </Picker>
                 <Text>Reps: {item.reps}</Text>
-                <Picker selectedValue={item.reps} style={{height: 50, width: 100}} onValueChange={(value: any) => {
+                <Picker selectedValue={item.reps} style={styles.picker} onValueChange={(value: any) => {
                   item.reps = parseInt(value);
                   root.saveData();
                   setRefresh(!refresh);
@@ -95,6 +95,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
+  },
+  picker: {
+    height: 45,
+    width: 100,
+    backgroundColor: "white",
   },
   box: {
     display: 'flex',
