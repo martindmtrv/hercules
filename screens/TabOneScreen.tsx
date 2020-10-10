@@ -1,15 +1,24 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
-
+import { StyleSheet, TouchableOpacity} from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
 export default function TabOneScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
+      <React.Fragment>
+        <FontAwesome5 name="dumbbell" size={100} color="#900" />
+        <br/>
+      </React.Fragment>
+      <Text style={styles.title}>Welcome back</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.js" />
+      <Text>Today is {} day.</Text>
+      <TouchableOpacity onPress={() => console.log("Replace with navigation to workout page")}>
+        <br></br>
+        <Text>Check out Today's Workout</Text>
+      </TouchableOpacity>
+      <Text>Check out the Spotify playlist of the day!</Text>
     </View>
   );
 }
