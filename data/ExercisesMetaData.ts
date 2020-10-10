@@ -117,118 +117,6 @@ export const EXERCISES: ExerciseMetaData[] = [
       "muscle": "lower back"
     },
     {
-      "exercise": "ab crunch machine",
-      "muscle": "abdominals"
-    },
-    {
-      "exercise": "ab roller",
-      "muscle": "abdominals"
-    },
-    {
-      "exercise": "adductor",
-      "muscle": "adductors"
-    },
-    {
-      "exercise": "adductor/groin",
-      "muscle": "adductors"
-    },
-    {
-      "exercise": "advanced kettlebell windmill",
-      "muscle": "abdominals"
-    },
-    {
-      "exercise": "air bike",
-      "muscle": "abdominals"
-    },
-    {
-      "exercise": "all fours quad stretch",
-      "muscle": "quadriceps"
-    },
-    {
-      "exercise": "alternate hammer curl",
-      "muscle": "biceps"
-    },
-    {
-      "exercise": "alternate heel touchers",
-      "muscle": "abdominals"
-    },
-    {
-      "exercise": "alternate incline dumbbell curl",
-      "muscle": "biceps"
-    },
-    {
-      "exercise": "alternate leg diagonal bound",
-      "muscle": "quadriceps"
-    },
-    {
-      "exercise": "alternating cable shoulder press",
-      "muscle": "shoulders"
-    },
-    {
-      "exercise": "alternating deltoid raise",
-      "muscle": "shoulders"
-    },
-    {
-      "exercise": "alternating floor press",
-      "muscle": "chest"
-    },
-    {
-      "exercise": "alternating hang clean",
-      "muscle": "hamstrings"
-    },
-    {
-      "exercise": "alternating kettlebell press",
-      "muscle": "shoulders"
-    },
-    {
-      "exercise": "alternating kettlebell row",
-      "muscle": "middle back"
-    },
-    {
-      "exercise": "alternating renegade row",
-      "muscle": "middle back"
-    },
-    {
-      "exercise": "ankle circles",
-      "muscle": "calves"
-    },
-    {
-      "exercise": "ankle on the knee",
-      "muscle": "glutes"
-    },
-    {
-      "exercise": "anterior tibialis-smr",
-      "muscle": "calves"
-    },
-    {
-      "exercise": "anti-gravity press",
-      "muscle": "shoulders"
-    },
-    {
-      "exercise": "arm circles",
-      "muscle": "shoulders"
-    },
-    {
-      "exercise": "arnold dumbbell press",
-      "muscle": "shoulders"
-    },
-    {
-      "exercise": "around the worlds",
-      "muscle": "chest"
-    },
-    {
-      "exercise": "atlas stone trainer",
-      "muscle": "lower back"
-    },
-    {
-      "exercise": "atlas stones",
-      "muscle": "lower back"
-    },
-    {
-      "exercise": "axle deadlift",
-      "muscle": "lower back"
-    },
-    {
       "exercise": "back flyes - with bands",
       "muscle": "shoulders"
     },
@@ -459,10 +347,6 @@ export const EXERCISES: ExerciseMetaData[] = [
     {
       "exercise": "bicycling",
       "muscle": "quadriceps"
-    },
-    {
-      "exercise": "bicycling",
-      "muscle": "stationary"
     },
     {
       "exercise": "board press",

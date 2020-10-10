@@ -21,7 +21,7 @@ export class AppState{
       const obj: DBFormat = JSON.parse(data || "{}");
       this.routines = obj.routines?.map(routine => {
         routine.exercises = routine.exercises.map(exercise => new ExerciseState().copyFrom(exercise));
-        return routine;
+        return new RoutineState().copyFrom(routine);
       }) || [];
       this.currentDay = obj.currentDay || 0;
       return this.initialized = true;

@@ -1,14 +1,14 @@
 import cuid from "cuid";
 import { ExerciseMetaData, EXERCISES } from "../ExercisesMetaData";
 
-function toTitleCase(str) {
+function toTitleCase(str: string) {
     return str.replace(
       /\w\S*/g,
       function(txt) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
       }
     );
-  }
+}
 
 export class ExerciseState{
     reps : number;
@@ -16,7 +16,7 @@ export class ExerciseState{
     isPriority: boolean;
     eid : number;
     id: string
-    constructor(reps?: number, sets?: number, isPriority?: boolean, id?: number){
+    constructor(sets?: number, reps?: number, isPriority?: boolean, id?: number){
         this.reps = reps || 10;
         this.sets = sets || 3;
         this.isPriority = !!isPriority;

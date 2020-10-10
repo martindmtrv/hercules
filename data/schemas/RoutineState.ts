@@ -4,12 +4,12 @@ import {ExerciseState} from './ExerciseState'
 export class RoutineState{
     numExercises : number;
     routineDay : string;
-    readonly id: string;
+    id: string;
     exercises : ExerciseState[];
 
-    constructor(routineDay : string){
+    constructor(routineDay?: string){
         this.numExercises = 0;
-        this.routineDay = routineDay;
+        this.routineDay = routineDay || "Chest";
         this.id = cuid();
         this.exercises = [];
     }
@@ -39,6 +39,11 @@ export class RoutineState{
                 console.error("This exercise is not in your Routine.");  
             }
         }
+    }
+
+    copyFrom(json: any): this {
+        // UNSAFE only from json reading
+        return Object.assign(this, json);
     }
 
 }

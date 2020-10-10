@@ -1,15 +1,17 @@
 import * as React from 'react';
-import { Dimensions, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { Dimensions, FlatList, SafeAreaView, ScrollView, StyleSheet, TouchableHighlight } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import { RootData } from '../data/RootDataContext';
 import { Text, View } from '../components/Themed';
 import { ExerciseState } from '../data/schemas/ExerciseState';
 import { RoutineState } from '../data/schemas/RoutineState';
 import { Picker } from '@react-native-community/picker';
+import { EXERCISES } from '../data/ExercisesMetaData';
 
 
 export default function RoutineDetailsScreen({ route, navigation  }: {route:any, navigation: any}) {
   const [refresh, setRefresh] = React.useState(false);
+  const [adding, setAdding] = React.useState(false);
 
   return (
     <RootData.Consumer>
@@ -19,10 +21,14 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
         return (
         <View style={styles.container}>
           <Text style={styles.title}> {routine.routineDay} Day</Text>
+          {!adding ? <TouchableOpacity style={{backgroundColor: "blue", padding: 8, marginTop: 5, borderRadius: 6}} onPress={() => setAdding(true)}><Text>+ Add New Exercise</Text></TouchableOpacity>
+          :
+          <TouchableOpacity style={{backgroundColor: "red", padding: 8, marginTop: 5, borderRadius: 6}} onPress={() => setAdding(false)}><Text>Cancel</Text></TouchableOpacity>}
+
           <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
             <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
-              {routine.exercises.map((item: ExerciseState) => <TouchableOpacity key={item.id} style={styles.box} onPress={()=> console.log(item)}>
+              {!adding ? routine.exercises.map((item: ExerciseState) => <TouchableOpacity key={item.id} style={styles.box} onPress={()=> console.log(item)}>
                 <Text>{item.getExercise()}</Text>
                 <Text>Sets: {item.sets}</Text>
                 <Picker selectedValue={item.sets} style={{height: 50, width: 100}} onValueChange={(value: any) => {
@@ -37,7 +43,30 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
                     <Picker.Item label={"5"} value={5} />
                   </Picker>
                 <Text>Reps: {item.reps}</Text>
-                </TouchableOpacity>)}
+                </TouchableOpacity>) : 
+                <FlatList
+                  style={{backgroundColor: "black"}}
+                  data={EXERCISES}
+                  renderItem={({item, index, separators}) => 
+                  <TouchableOpacity
+                    //@ts-ignore
+                    key={item.key}
+                    onPress={() => {
+                      routine.addExercise(new ExerciseState(3, 10, false, index));
+                      root.saveData();
+                      setRefresh(!refresh);
+                      setAdding(false);
+                    }}
+                    // onShowUnderlay={separators.highlight}
+                    // onHideUnderlay={separators.unhighlight}
+                    >
+                    <View style={styles.box}>
+                      <Text>{item.exercise}</Text>
+                      <Text>{item.muscle}</Text>
+                    </View>
+                  </TouchableOpacity>}
+                  keyExtractor={item => item.exercise}
+                />}
             </ScrollView>
             </SafeAreaView>
         </View>
