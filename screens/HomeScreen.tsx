@@ -4,7 +4,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
-export default function TabOneScreen() {
+export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <React.Fragment>
@@ -15,8 +15,9 @@ export default function TabOneScreen() {
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <Text>Today is {} day.</Text>
       <TouchableOpacity onPress={() => console.log("Replace with navigation to workout page")}>
-        <br></br>
+        <br/>
         <Text>Check out Today's Workout</Text>
+        <br/>
       </TouchableOpacity>
       <Text>Check out the Spotify playlist of the day!</Text>
     </View>
