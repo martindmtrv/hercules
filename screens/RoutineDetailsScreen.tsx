@@ -18,8 +18,8 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
   const [random, setRandom] = React.useState(false);
   const [search, setSearch] = React.useState("");
 
-  const setOptions = [1,2,3,4,5,6].map(num => ({Id: num, Name: `${num}`, Value: `${num}`}));
-  const repOptions = [1,2,3,4,5,6,8,10,12,15,20,25].map(num => ({Id: num, Name: `${num}`, Value: `${num}`}));
+  const setOptions = Array.from(new Array(10), (v, index) => index+1);
+  const repOptions = Array.from(new Array(25), (v, index) => index+1);
 
   return (
     <RootData.Consumer>
@@ -68,7 +68,7 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
           <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
             <SafeAreaView style={styles.container}>
               {adding && <>
-              <TextInput placeholder={"Search Exercises"} style={{backgroundColor: "white", width: Dimensions.get('screen').width * 0.8, padding: 16}} value={search} onChangeText={(text) => setSearch(text)} />
+              <TextInput placeholder={"Search Exercises"} style={{backgroundColor: "white", width: Dimensions.get('window').width * 0.8, padding: 16}} value={search} onChangeText={(text) => setSearch(text)} />
               <FlatList
                   style={styles.scrollView}
                   data={filtered}
@@ -101,11 +101,7 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
                   root.saveData();
                   setRefresh(!refresh);
                   }}>
-                    <Picker.Item label={"1"} value={1} />
-                    <Picker.Item label={"2"} value={2} />
-                    <Picker.Item label={"3"} value={3} />
-                    <Picker.Item label={"4"} value={4} />
-                    <Picker.Item label={"5"} value={5} />
+                    {setOptions.map((v) => <Picker.Item key={v} label={`${v}`} value={v} />)}
                   </Picker>}
                 <Text style={{fontSize: 20}}>Reps: {item.reps}</Text>
                 {!start && <Picker selectedValue={item.reps} style={styles.picker} onValueChange={(value: any) => {
@@ -113,16 +109,7 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
                   root.saveData();
                   setRefresh(!refresh);
                   }}>
-                    <Picker.Item label={"1"} value={1} />
-                    <Picker.Item label={"2"} value={2} />
-                    <Picker.Item label={"3"} value={3} />
-                    <Picker.Item label={"4"} value={4} />
-                    <Picker.Item label={"5"} value={5} />
-                    <Picker.Item label={"6"} value={6} />
-                    <Picker.Item label={"8"} value={8} />
-                    <Picker.Item label={"10"} value={10} />
-                    <Picker.Item label={"12"} value={12} />
-                    <Picker.Item label={"15"} value={15} />
+                    {repOptions.map((v) => <Picker.Item key={v} label={`${v}`} value={v} />)}
                   </Picker>}
                 </TouchableOpacity>)}
                 </ScrollView> }
