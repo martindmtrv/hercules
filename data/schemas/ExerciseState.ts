@@ -15,13 +15,15 @@ export class ExerciseState{
     sets : number;
     isPriority: boolean;
     eid : number;
-    id: string
+    id: string;
+    isHeavy: boolean;
     constructor(sets?: number, reps?: number, isPriority?: boolean, id?: number){
         this.reps = reps || 10;
         this.sets = sets || 3;
         this.isPriority = !!isPriority;
         this.id = cuid();
         this.eid = id || 0;
+        this.isHeavy = this.reps < 10;
     }
 
     getWeight(): number{

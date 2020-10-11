@@ -4,8 +4,17 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootData } from '../data/RootDataContext';
+import { useIsFocused } from '@react-navigation/native';
 
-export default function HomeScreen({navigation}: {navigation: any}) {
+export default function HomeScreen({route, navigation}: {route: any, navigation: any}) {
+  const [refresh, setRefresh] = React.useState(false);
+
+  const isFocused = useIsFocused()
+
+  React.useEffect(() => {
+    setRefresh(!refresh);
+  }, [isFocused])
+
   return (
     <RootData.Consumer>
     {(root) => (<View style={styles.container}>
