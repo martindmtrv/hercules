@@ -71,7 +71,7 @@ function HomeNavigator() {
       <HomeStack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{ headerTitle: 'JymSplit'}}
+        options={{ headerTitle: 'Hercules'}}
       />
     </HomeStack.Navigator>
   );

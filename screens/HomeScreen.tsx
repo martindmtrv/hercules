@@ -4,8 +4,17 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootData } from '../data/RootDataContext';
+import { useIsFocused } from '@react-navigation/native';
 
-export default function HomeScreen({navigation}: {navigation: any}) {
+export default function HomeScreen({route, navigation}: {route: any, navigation: any}) {
+  const [refresh, setRefresh] = React.useState(false);
+
+  const isFocused = useIsFocused()
+
+  React.useEffect(() => {
+    setRefresh(!refresh);
+  }, [isFocused])
+
   return (
     <RootData.Consumer>
     {(root) => (<View style={styles.container}>
@@ -13,7 +22,7 @@ export default function HomeScreen({navigation}: {navigation: any}) {
             <FontAwesome5 name="dumbbell" size={80} color="#900" />
         </View>
         <View style={styles.centerbox}>
-            <Text style={styles.title}>Today is {root.routines[root.currentDay].routineDay} day</Text>
+            <Text style={styles.title}>TODAY'S WORKOUT: {root.routines[root.currentDay].routineDay.toUpperCase()}</Text>
             <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
             <TouchableOpacity style={{backgroundColor: "blue", borderRadius: 6, padding: 16, margin: 12}} onPress={() => navigation.navigate("Routines", {screen:"Details", params:{id: root.routines[root.currentDay].id}, initial: false})}>
                 <Text>Check out Today's Workout</Text>
