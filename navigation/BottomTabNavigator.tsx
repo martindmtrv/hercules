@@ -2,13 +2,10 @@ import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import HomeScreen from '../screens/HomeScreen';
-import RoutineScreen from '../screens/RoutinesScreen';
-import { BottomTabParamList, SettingsParamList, HomeParamList, TabThreeParamList, RoutineParamList } from '../types';
-
+import { BottomTabParamList, HomeParamList, RoutineParamList } from '../types';
 import RoutinesScreen from '../screens/RoutinesScreen';
 import RoutineDetailsScreen from '../screens/RoutineDetailsScreen';
 
