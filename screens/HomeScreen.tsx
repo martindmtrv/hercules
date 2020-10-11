@@ -60,7 +60,8 @@ export default function HomeScreen({route, navigation}: {route: any, navigation:
             </TouchableOpacity>}
             <TouchableOpacity style={{backgroundColor: "green", borderRadius: 6, padding: 16, margin: 12}} onPress={() => {
               if (!code){
-                promptAsync({useProxy: true});
+                SpotifyApiUtil.fetchRandomPlaylist().then(url => Linking.openURL(url));
+                //promptAsync();
               }  else {
                 if (!token) {
                   fetch(discovery.tokenEndpoint, {
@@ -102,10 +103,6 @@ export default function HomeScreen({route, navigation}: {route: any, navigation:
                     root.saveData(); 
                   } 
                 }
-                
-              
-              
-              // SpotifyApiUtil.fetchRandomPlaylist().then(url => Linking.openURL(url));
             }}>
               <Text style={styles.text}>Check out a random Spotify playlist!</Text>
             </TouchableOpacity>

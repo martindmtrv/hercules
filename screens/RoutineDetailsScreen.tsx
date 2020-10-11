@@ -30,9 +30,18 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
         if (start && !random) {
           // randomize the reps / sets
           routine.exercises.forEach((exercise) => {
-            exercise.reps = exercise.isHeavy ? Math.floor(exercise.reps * 0.8) : Math.ceil(exercise.reps * 1.3);
-            exercise.sets = exercise.isHeavy ? Math.floor(exercise.sets * 0.8) : Math.ceil(exercise.sets * 1.3);
-            exercise.isHeavy = !exercise.isHeavy;
+            let newSetsMultiplier;
+            const newRepsMultiplier = Math.random() * 0.5 + 0.8;
+
+            const difference = newRepsMultiplier - 1;
+            if (difference > 1) {
+              newSetsMultiplier = 1 + difference;
+            } else {
+              newSetsMultiplier = 1 - difference;
+            }
+
+            exercise.reps = Math.ceil(exercise.reps * newRepsMultiplier);
+            exercise.sets = Math.ceil(exercise.sets * newSetsMultiplier);
           });
 
 
