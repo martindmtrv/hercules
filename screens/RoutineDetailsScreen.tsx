@@ -86,7 +86,7 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
             {!adding && <ScrollView style={styles.scrollView}>
               {routine.exercises.map((item: ExerciseState) => 
               <TouchableOpacity key={item.id} style={styles.box} onPress={()=> console.log(item)}>
-                <Text style={{fontSize: 30}}>{item.getExercise()}</Text>
+                <Text style={{fontSize: 25}}>{item.getExercise()}</Text>
                 <Text style={{fontSize : 20}}>Sets: {item.sets}</Text>
                 { !start && 
                 <Picker selectedValue={item.sets} style={styles.picker} onValueChange={(value: any) => {
