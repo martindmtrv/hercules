@@ -5,9 +5,7 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import SettingsScreen from '../screens/SettingsScreen';
 import HomeScreen from '../screens/HomeScreen';
-import TabThreeScreen from '../screens/TabThreeScreen';
 import RoutineScreen from '../screens/RoutinesScreen';
 import { BottomTabParamList, SettingsParamList, HomeParamList, TabThreeParamList, RoutineParamList } from '../types';
 
