@@ -36,18 +36,24 @@ export default function App() {
     // initialize test values
     console.log("INSERTING TESTS");
     root.routines.push(new RoutineState("Chest"));
-    root.routines[0].addExercise(new ExerciseState(3, 10, false, 0));
-    root.routines[0].addExercise(new ExerciseState(4, 12, false, 1));
-    root.routines[0].addExercise(new ExerciseState(3, 10, false, 0));
+    root.routines[0].addExercise(new ExerciseState(3, 10, false, 72));
+    root.routines[0].addExercise(new ExerciseState(4, 12, false, 73));
+    root.routines[0].addExercise(new ExerciseState(3, 10, false, 74));
 
     root.routines.push(new RoutineState("Back"));
-    root.routines[1].addExercise(new ExerciseState(3, 10, false, 0));
-    root.routines[1].addExercise(new ExerciseState(2, 5, false, 9));
-    root.routines[1].addExercise(new ExerciseState(3, 10, false, 0));
+    root.routines[1].addExercise(new ExerciseState(3, 10, false, 139));
+    root.routines[1].addExercise(new ExerciseState(2, 5, false, 140));
+    root.routines[1].addExercise(new ExerciseState(3, 10, false, 141));
+    root.routines[1].addExercise(new ExerciseState(5, 10, false, 142));
+    root.routines[1].addExercise(new ExerciseState(3, 20, false, 143));
 
 
     root.routines.push(new RoutineState("Legs"));
-    root.routines[2].addExercise(new ExerciseState(5, 10, false, 55));
+    root.routines[2].addExercise(new ExerciseState(5, 10, false, 61));
+    root.routines[2].addExercise(new ExerciseState(5, 10, false, 62));
+    root.routines[2].addExercise(new ExerciseState(5, 10, false, 63));
+    root.routines[2].addExercise(new ExerciseState(5, 10, false, 64));
+    root.routines[2].addExercise(new ExerciseState(5, 10, false, 65));
 
     root.currentDay || (root.currentDay = 0);
 
