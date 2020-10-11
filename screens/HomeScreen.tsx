@@ -22,7 +22,7 @@ export default function HomeScreen({route, navigation}: {route: any, navigation:
             <FontAwesome5 name="dumbbell" size={80} color="#900" />
         </View>
         <View style={styles.centerbox}>
-            <Text style={styles.title}>{root.routines.length !== 0 || root.routines[root.currentDay] ? `TODAY IS ${root.routines[root.currentDay >= root.routines.length ? 0: root.currentDay]?.routineDay.toUpperCase()} DAY`: "NO DAYS"}</Text>
+            <Text style={styles.title}>{root.routines.length !== 0 || root.routines[root.currentDay] ? `TODAY'S WORKOUT: ${root.routines[root.currentDay >= root.routines.length ? 0: root.currentDay]?.routineDay.toUpperCase()}`: "NO DAYS"}</Text>
             <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
             {root.routines.length > 0 &&<TouchableOpacity style={{backgroundColor: "blue", borderRadius: 6, padding: 16, margin: 12}} onPress={() => {
               navigation.navigate("Routines", {screen:"Details", params:{id: root.routines[root.currentDay >= root.routines.length ? 0: root.currentDay].id}, initial: false});

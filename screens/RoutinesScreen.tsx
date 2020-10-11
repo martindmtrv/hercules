@@ -8,6 +8,7 @@ import { RoutineState } from '../data/schemas/RoutineState';
 export default function RoutinesScreen({ navigation }: {navigation: any}) {
   const [adding, setAdding] = React.useState(false);
   const [value, setValue] = React.useState("New Routine");
+  const [refresh, setRefresh] = React.useState(false);
 
   return (
     <RootData.Consumer>
@@ -25,9 +26,18 @@ export default function RoutinesScreen({ navigation }: {navigation: any}) {
         <SafeAreaView style={styles.container}>
           <ScrollView style={styles.scrollView}>
             {root.routines.map(routine => 
-              <TouchableOpacity key={routine.id} style={styles.box} onPress={()=> navigation.navigate("Details", {id: routine.id})}>
+              <React.Fragment key={routine.id}><TouchableOpacity style={styles.box} onPress={() => navigation.navigate("Details", { id: routine.id })}>
                 <Text style={styles.routineName}>{routine.routineDay}</Text>
               </TouchableOpacity>
+      
+              <TouchableOpacity style={styles.tinyBox} onPress={() => {
+                root.routines.splice(root.routines.indexOf(routine),1);
+                root.saveData(); 
+                setRefresh(!refresh)
+                }}>
+                <Text >Delete Routine</Text>
+                </TouchableOpacity>
+                </React.Fragment>
               )}
           </ScrollView>
         </SafeAreaView>
@@ -48,6 +58,17 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     height: 200,
+    justifyContent: "center",
+    borderRadius: 6,
+    borderStyle: "solid",
+    borderWidth: 2,
+    marginBottom: 5,
+    borderColor: "red",
+  },tinyBox: {
+    display: 'flex',
+    flexDirection: "column",
+    alignItems: "center",
+    height: 25,
     justifyContent: "center",
     borderRadius: 6,
     borderStyle: "solid",
