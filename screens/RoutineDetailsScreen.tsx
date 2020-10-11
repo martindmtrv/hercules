@@ -86,8 +86,8 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
             {!adding && <ScrollView style={styles.scrollView}>
               {routine.exercises.map((item: ExerciseState) => 
               <TouchableOpacity key={item.id} style={styles.box} onPress={()=> console.log(item)}>
-                <Text>{item.getExercise()}</Text>
-                <Text>Sets: {item.sets}</Text>
+                <Text style={{fontSize: 30}}>{item.getExercise()}</Text>
+                <Text style={{fontSize : 20}}>Sets: {item.sets}</Text>
                 { !start && 
                 <Picker selectedValue={item.sets} style={styles.picker} onValueChange={(value: any) => {
                   item.sets = parseInt(value);
@@ -100,7 +100,7 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
                     <Picker.Item label={"4"} value={4} />
                     <Picker.Item label={"5"} value={5} />
                   </Picker>}
-                <Text>Reps: {item.reps}</Text>
+                <Text style={{fontSize: 20}}>Reps: {item.reps}</Text>
                 {!start && <Picker selectedValue={item.reps} style={styles.picker} onValueChange={(value: any) => {
                   item.reps = parseInt(value);
                   root.saveData();
