@@ -28,12 +28,12 @@ export default function HomeScreen({route, navigation}: {route: any, navigation:
             {root.routines.length > 0 &&<TouchableOpacity style={{backgroundColor: "blue", borderRadius: 6, padding: 16, margin: 12}} onPress={() => {
               navigation.navigate("Routines", {screen:"Details", params:{id: root.routines[root.currentDay >= root.routines.length ? 0: root.currentDay].id}, initial: false});
             }}>
-                <Text>Check out Today's Workout</Text>
+                <Text style={styles.text}>Check out Today's Workout</Text>
             </TouchableOpacity>}
             <TouchableOpacity style={{backgroundColor: "green", borderRadius: 6, padding: 16, margin: 12}} onPress={() => {
               SpotifyApiUtil.fetchRandomPlaylist().then(url => Linking.openURL(url));
             }}>
-              <Text>Check out a random Spotify playlist!</Text>
+              <Text style={styles.text}>Check out a random Spotify playlist!</Text>
             </TouchableOpacity>
         </View>
     </View>)}
