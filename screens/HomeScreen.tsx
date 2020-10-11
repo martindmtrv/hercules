@@ -6,11 +6,37 @@ import { Text, View } from '../components/Themed';
 import { RootData } from '../data/RootDataContext';
 import { useIsFocused } from '@react-navigation/native';
 import { SpotifyApiUtil } from '../spotifyPlaylist/SpotifyApiUtil';
+import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
+import * as WebBrowser from 'expo-web-browser';
+
+const discovery = {
+  authorizationEndpoint: 'https://accounts.spotify.com/authorize',
+  tokenEndpoint: 'https://accounts.spotify.com/api/token',
+};
+
+WebBrowser.maybeCompleteAuthSession();
 
 export default function HomeScreen({route, navigation}: {route: any, navigation: any}) {
   const [refresh, setRefresh] = React.useState(false);
+  const [code, setCode] = React.useState("");
+  const [token, setToken] = React.useState("");
 
-  const isFocused = useIsFocused()
+  const isFocused = useIsFocused();
+
+  const [request, response, promptAsync] = useAuthRequest({
+    clientId: '53c7066e812d48c49a554b559769a8fd',
+    scopes: [],
+    usePKCE: false,
+    redirectUri: 'https://auth.expo.io/@anonymous/Hercules-da914c9e-3f52-485e-adae-0fb268fc1247',
+  }, discovery);
+
+  React.useEffect(() => {
+    if (response?.type === 'success') {
+      const { code } = response.params;
+      setCode(code);
+      navigation.navigate("Home");
+    }
+  }, [response]);
 
   React.useEffect(() => {
     setRefresh(!refresh);
@@ -31,7 +57,53 @@ export default function HomeScreen({route, navigation}: {route: any, navigation:
                 <Text>Check out Today's Workout</Text>
             </TouchableOpacity>}
             <TouchableOpacity style={{backgroundColor: "green", borderRadius: 6, padding: 16, margin: 12}} onPress={() => {
-              SpotifyApiUtil.fetchRandomPlaylist().then(url => Linking.openURL(url));
+              if (!code){
+                promptAsync({useProxy: true});
+              }  else {
+                if (!token) {
+                  fetch(discovery.tokenEndpoint, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    body: `grant_type=authorization_code&code=${code}&redirect_uri=https://auth.expo.io/@anonymous/Hercules-da914c9e-3f52-485e-adae-0fb268fc1247&client_id=53c7066e812d48c49a554b559769a8fd&client_secret=8a3c49f2544d4493ac4ab74878223df6`,
+                    }).then(res => res.json()).then((res) =>{
+  
+                    fetch(`https://api.spotify.com/v1/search?type=playlist&q=gym&limit=1&offset=${Math.floor(Math.random() * 2000)}`, {
+                      method: "GET",
+                      headers: {
+                        "Authorization": `Bearer ${res.access_token}`,
+                      }
+                    }).then(res => res.json()).then(res => {
+                      
+                      Linking.openURL(res.playlists.items[0].external_urls.spotify);
+                    
+                    }).catch(err => console.log(err));
+  
+                    root.apiCode = res.access_token;
+                    root.saveData();
+                    setToken(res.access_token);
+  
+                  });                
+                } else {
+                  fetch(`https://api.spotify.com/v1/search?type=playlist&q=gym&limit=1&offset=${Math.floor(Math.random() * 2000)}`, {
+                      method: "GET",
+                      headers: {
+                        "Authorization": `Bearer ${token}`,
+                      }
+                    }).then(res => res.json()).then(res => {
+                      Linking.openURL(res.playlists.items[0].external_urls.spotify);
+                    
+                    }).catch(err => console.log(err));
+  
+                    root.apiCode = token;
+                    root.saveData(); 
+                  } 
+                }
+                
+              
+              
+              // SpotifyApiUtil.fetchRandomPlaylist().then(url => Linking.openURL(url));
             }}>
               <Text>Check out a random Spotify playlist!</Text>
             </TouchableOpacity>

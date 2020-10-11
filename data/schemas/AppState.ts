@@ -8,11 +8,13 @@ export class AppState{
   currentDay: number = 0;
 
   initialized: boolean;
+  apiCode: string;
 
   constructor() {
     this.initialized = false;
     this.routines = [];
     this.currentDay = 0;
+    this.apiCode = "";
   }
 
   loadData(): Promise<boolean> {
