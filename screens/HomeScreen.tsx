@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity} from 'react-native';
+import { Linking, StyleSheet, TouchableOpacity} from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootData } from '../data/RootDataContext';
 import { useIsFocused } from '@react-navigation/native';
+import { SpotifyApiUtil } from '../spotifyPlaylist/SpotifyApiUtil';
 
 export default function HomeScreen({route, navigation}: {route: any, navigation: any}) {
   const [refresh, setRefresh] = React.useState(false);
@@ -29,7 +30,11 @@ export default function HomeScreen({route, navigation}: {route: any, navigation:
             }}>
                 <Text>Check out Today's Workout</Text>
             </TouchableOpacity>}
-            <Text>Check out the Spotify playlist of the day!</Text>
+            <TouchableOpacity style={{backgroundColor: "green", borderRadius: 6, padding: 16, margin: 12}} onPress={() => {
+              SpotifyApiUtil.fetchRandomPlaylist().then(url => Linking.openURL(url));
+            }}>
+              <Text>Check out the Spotify playlist of the day!</Text>
+            </TouchableOpacity>
         </View>
     </View>)}
     </RootData.Consumer>
