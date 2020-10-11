@@ -37,20 +37,6 @@ export default function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-paper" color={color} />,
         }}
       />
-      <BottomTab.Screen
-        name="TabThree"
-        component={TabThreeNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="Settings"
-        component={SettingsNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-settings" color={color} />,
-        }}
-      />
     </BottomTab.Navigator>
   );
 }
@@ -93,33 +79,5 @@ function RoutineNavigator() {
         options={{headerTitle: 'Routine View'}}
       />
     </RoutineStack.Navigator>
-  );
-}
-
-const TabThreeStack = createStackNavigator<TabThreeParamList>();
-
-function TabThreeNavigator() {
-  return (
-    <TabThreeStack.Navigator>
-      <TabThreeStack.Screen
-        name="TabThreeScreen"
-        component={TabThreeScreen}
-        options={{ headerTitle: 'Tab Three Title' }}
-      />
-    </TabThreeStack.Navigator>
-  );
-}
-
-const SettingsStack = createStackNavigator<SettingsParamList>();
-
-function SettingsNavigator() {
-  return (
-    <SettingsStack.Navigator>
-      <SettingsStack.Screen
-        name="SettingsScreen"
-        component={SettingsScreen}
-        options={{ headerTitle: 'Settings' }}
-      />
-    </SettingsStack.Navigator>
   );
 }

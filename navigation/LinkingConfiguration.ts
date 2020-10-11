@@ -17,16 +17,6 @@ export default {
               RoutineDetailsScreen: 'routines/details'
             },
           },
-          TabThree: {
-            screens: {
-              TabThreeScreen: 'three',
-            },
-          },
-          Settings: {
-            screens: {
-              SettingsScreen: 'settings',
-            },
-          },
         },
       },
       NotFound: '*',
