@@ -62,5 +62,8 @@ const styles = StyleSheet.create({
   centerbox: {
     alignItems: 'center',
     paddingBottom: 250,
+  },
+  text : {
+    fontFamily: 'Futura',
   }
 });
