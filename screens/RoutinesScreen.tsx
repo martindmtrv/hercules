@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, TextInput } from 'react-native';
 import { TouchableOpacity, Dimensions } from 'react-native';
+import { ForceTouchGestureHandler } from 'react-native-gesture-handler';
 import { Text, View } from '../components/Themed';
 import { RootData } from '../data/RootDataContext';
 import { RoutineState } from '../data/schemas/RoutineState';
@@ -35,7 +36,7 @@ export default function RoutinesScreen({ navigation }: {navigation: any}) {
                 root.saveData(); 
                 setRefresh(!refresh)
                 }}>
-                <Text >Delete Routine</Text>
+                <Text style={{fontFamily: 'Futura',}}>Delete Routine</Text>
                 </TouchableOpacity>
                 </React.Fragment>
               )}
@@ -86,11 +87,13 @@ const styles = StyleSheet.create({
   routineName: {
     fontSize: 30,
     flexGrow: 0,
+    fontFamily: 'Futura',
   },
   title: {
     paddingTop: 20,
     fontSize: 25,
     fontWeight: 'bold',
+    fontFamily: 'Futura',
   },
   separator: {
     marginVertical: 30,
@@ -102,6 +105,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   text: {
+    fontFamily: 'Futura',
     fontSize: 42,
   },
 });

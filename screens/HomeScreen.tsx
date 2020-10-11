@@ -51,10 +51,10 @@ export default function HomeScreen({route, navigation}: {route: any, navigation:
         <View style={styles.centerbox}>
             <Text style={styles.title}>{root.routines.length !== 0 || root.routines[root.currentDay] ? `TODAY'S WORKOUT: ${root.routines[root.currentDay >= root.routines.length ? 0: root.currentDay]?.routineDay.toUpperCase()}`: "NO DAYS"}</Text>
             <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-            {root.routines.length > 0 &&<TouchableOpacity style={{backgroundColor: "blue", borderRadius: 6, padding: 16, margin: 12}} onPress={() => {
+            {root.routines.length > 0 &&<TouchableOpacity style={{backgroundColor: "blue", borderRadius: 6, padding: 30, margin: 24}} onPress={() => {
               navigation.navigate("Routines", {screen:"Details", params:{id: root.routines[root.currentDay >= root.routines.length ? 0: root.currentDay].id}, initial: false});
             }}>
-                <Text>Check out Today's Workout</Text>
+                <Text style={styles.text}>Check out Today's Workout</Text>
             </TouchableOpacity>}
             <TouchableOpacity style={{backgroundColor: "green", borderRadius: 6, padding: 16, margin: 12}} onPress={() => {
               if (!code){
@@ -105,7 +105,7 @@ export default function HomeScreen({route, navigation}: {route: any, navigation:
               
               // SpotifyApiUtil.fetchRandomPlaylist().then(url => Linking.openURL(url));
             }}>
-              <Text>Check out a random Spotify playlist!</Text>
+              <Text style={styles.text}>Check out a random Spotify playlist!</Text>
             </TouchableOpacity>
         </View>
     </View>)}
@@ -134,5 +134,8 @@ const styles = StyleSheet.create({
   centerbox: {
     alignItems: 'center',
     paddingBottom: 250,
+  },
+  text : {
+    fontFamily: 'Futura',
   }
 });

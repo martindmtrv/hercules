@@ -83,8 +83,8 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
                       setAdding(false);
                     }}>
                     <View style={styles.box}>
-                      <Text>{item.exercise}</Text>
-                      <Text>{item.muscle}</Text>
+                      <Text style={{fontSize: 25, fontFamily: 'Futura',}}>{item.exercise}</Text>
+                      <Text style={{fontSize: 20, fontFamily: 'Futura',}}>{item.muscle}</Text>
                     </View>
                   </TouchableOpacity>}
                   keyExtractor={item => item.exercise}
@@ -93,8 +93,8 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
             {!adding && <ScrollView style={styles.scrollView}>
               {routine.exercises.map((item: ExerciseState) => 
               <TouchableOpacity key={item.id} style={styles.box} onPress={()=> console.log(item)}>
-                <Text style={{fontSize: 25}}>{item.getExercise()}</Text>
-                <Text style={{fontSize : 20}}>Sets: {item.sets}</Text>
+                <Text style={{fontSize: 25, fontFamily: 'Futura',}}>{item.getExercise()}</Text>
+                <Text style={{fontSize : 20, fontFamily: 'Futura',}}>Sets: {item.sets}</Text>
                 { !start && 
                 <Picker selectedValue={item.sets} style={styles.picker} onValueChange={(value: any) => {
                   item.sets = parseInt(value);
@@ -103,7 +103,7 @@ export default function RoutineDetailsScreen({ route, navigation  }: {route:any,
                   }}>
                     {setOptions.map((v) => <Picker.Item key={v} label={`${v}`} value={v} />)}
                   </Picker>}
-                <Text style={{fontSize: 20}}>Reps: {item.reps}</Text>
+                <Text style={{fontSize: 20,fontFamily: 'Futura'}}>Reps: {item.reps}</Text>
                 {!start && <Picker selectedValue={item.reps} style={styles.picker} onValueChange={(value: any) => {
                   item.reps = parseInt(value);
                   root.saveData();
@@ -169,6 +169,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   text: {
+    fontFamily: 'Futura',
     fontSize: 42,
   },
 });
