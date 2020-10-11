@@ -33,7 +33,7 @@ export default function HomeScreen({route, navigation}: {route: any, navigation:
             <TouchableOpacity style={{backgroundColor: "green", borderRadius: 6, padding: 16, margin: 12}} onPress={() => {
               SpotifyApiUtil.fetchRandomPlaylist().then(url => Linking.openURL(url));
             }}>
-              <Text>Check out the Spotify playlist of the day!</Text>
+              <Text>Check out a random Spotify playlist!</Text>
             </TouchableOpacity>
         </View>
     </View>)}
