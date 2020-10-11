@@ -23,11 +23,13 @@ export default function HomeScreen({route, navigation}: {route: any, navigation:
 
   const isFocused = useIsFocused();
 
+  const redirectUri = makeRedirectUri({useProxy: true});
+
   const [request, response, promptAsync] = useAuthRequest({
     clientId: '53c7066e812d48c49a554b559769a8fd',
     scopes: [],
     usePKCE: false,
-    redirectUri: 'https://auth.expo.io/@anonymous/Hercules-da914c9e-3f52-485e-adae-0fb268fc1247',
+    redirectUri: redirectUri,
   }, discovery);
 
   React.useEffect(() => {
@@ -66,7 +68,7 @@ export default function HomeScreen({route, navigation}: {route: any, navigation:
                     headers: {
                       "Content-Type": "application/x-www-form-urlencoded",
                     },
-                    body: `grant_type=authorization_code&code=${code}&redirect_uri=https://auth.expo.io/@anonymous/Hercules-da914c9e-3f52-485e-adae-0fb268fc1247&client_id=53c7066e812d48c49a554b559769a8fd&client_secret=8a3c49f2544d4493ac4ab74878223df6`,
+                    body: `grant_type=authorization_code&code=${code}&redirect_uri=${redirectUri}&client_id=53c7066e812d48c49a554b559769a8fd&client_secret=8a3c49f2544d4493ac4ab74878223df6`,
                     }).then(res => res.json()).then((res) =>{
   
                     fetch(`https://api.spotify.com/v1/search?type=playlist&q=gym&limit=1&offset=${Math.floor(Math.random() * 2000)}`, {
