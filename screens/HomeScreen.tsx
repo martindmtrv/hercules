@@ -23,7 +23,7 @@ export default function HomeScreen({route, navigation}: {route: any, navigation:
 
   const isFocused = useIsFocused();
 
-  const redirectUri = makeRedirectUri({useProxy: true});
+  const redirectUri = "https://auth.expo.io/@martin3dimitrov/Hercules";
 
   const [request, response, promptAsync] = useAuthRequest({
     clientId: '53c7066e812d48c49a554b559769a8fd',
